@@ -12,8 +12,11 @@ class Team {
     
     //MARK - Properties
       var characters = [Character]()
+      var charactersName = [String]()
       var name = ""
       var teamName = ""
+      var characterName = ""
+    
     
     //MARK - Init
     init() {
@@ -61,10 +64,19 @@ class Team {
         }
     }
     
-    // The player creates a Character to add to his Team
+    // Check that entered name is unique in the Game
+    func controlIfNameIsUnique() {
+            if charactersName.contains(characterName) {
+                print("This name already exist !")
+                characterName = ""
+            } else {
+                charactersName.append(characterName)
+            }
+    }
+
+    // The player creates a character to add to his Team
     private func createCharacter() {
         var userChoice = 0
-        var characterName = ""
         
         presentListOfCharacter()
         repeat {
@@ -75,36 +87,37 @@ class Team {
             }
         } while userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 4 && userChoice != 5
         
-         repeat {
-            print("Enter a name for your character :")
-            if let data = readLine() {
-                characterName = data
-            }
-        } while characterName == ""
+        repeat {
+                print("Enter a name for your character :")
+                if let data = readLine() {
+                    characterName = data
+                }
+            controlIfNameIsUnique()
+            } while characterName == ""
         
         switch userChoice {
         case 1:
-            let fighter = Fighter(name: characterName) // Add a Fighter
-            characters.append(fighter)
-            print("A Fighter named \(fighter.name) is added !")
+                let fighter = Fighter(name: characterName) // Add a Fighter
+                characters.append(fighter)
+                print("A Fighter named \(fighter.name) is added !")
         case 2:
-            let magus = Magus(name: characterName) // Add a Magus
-            characters.append(magus)
-            print("A Magus named \(magus.name) is added !")
+                let magus = Magus(name: characterName) // Add a Magus
+                characters.append(magus)
+                print("A Magus named \(magus.name) is added !")
         case 3:
-            let colossus = Colossus(name: characterName) // Add a Colossus
-            characters.append(colossus)
-            print("A Colossus named \(colossus.name) is added !")
+                let colossus = Colossus(name: characterName) // Add a Colossus
+                characters.append(colossus)
+                print("A Colossus named \(colossus.name) is added !")
         case 4:
-            let dwarf = Dwarf(name: characterName) // Add a Dwarf
-            characters.append(dwarf)
-            print("A Dwarf named \(dwarf.name) is added !")
+                let dwarf = Dwarf(name: characterName) // Add a Dwarf
+                characters.append(dwarf)
+                print("A Dwarf named \(dwarf.name) is added !")
         case 5:
-            let thief = Thief(name: characterName) // Add a Thief
-            characters.append(thief)
-            print("A Thief named \(thief.name) is added !")
+                let thief = Thief(name: characterName) // Add a Thief
+                characters.append(thief)
+                print("A Thief named \(thief.name) is added !")
         default:
-            break
+                break
         }
 
        
