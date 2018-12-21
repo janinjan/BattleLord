@@ -15,7 +15,6 @@ class Team {
       var charactersName = [String]()
       var name = ""
       var teamName = ""
-      var characterName = ""
     
     
     //MARK - Init
@@ -35,17 +34,15 @@ class Team {
         } while teamName == ""
     }
     
-    func showListOfTeam() {
-        
-        print("\n ==========================================="
-            + "\n 🗡 The team \(teamName) is composed of:")
+    func showCharactersInTeam() {
+        print("\n 🗡 The team \(teamName) is composed of:")
         for character in characters {
-            character.presentCharacters()
+            character.describeCharacters()
         }
     }
     
-    // Main Interface
-    func presentListOfCharacter() {
+    // First Interface
+    func menuListOfCharacter() {
         print("\n ==========================================="
             + "\n Add 3 characters to your Team :"
             + "\n1. Fighter   - Life: 100  - Damages : 10 pts"
@@ -65,20 +62,28 @@ class Team {
     }
     
     // Check that entered name is unique in the Game
-    func controlIfNameIsUnique() {
-            if charactersName.contains(characterName) {
-                print("This name already exist !")
-                characterName = ""
-            } else {
-                charactersName.append(characterName)
+    private func uniqueCharacterName() -> String {
+        var characterName = ""
+        repeat {
+            print("Enter a name for your character :")
+            if let data = readLine() {
+                characterName = data
+                if charactersName.contains(characterName) {
+                      print("This name already exist !")
+                    characterName = ""
+                } else {
+                    charactersName.append(characterName)
+                }
             }
+        } while characterName == ""
+        return characterName
     }
 
     // The player creates a character to add to his Team
     private func createCharacter() {
         var userChoice = 0
         
-        presentListOfCharacter()
+        menuListOfCharacter()
         repeat {
             if let data = readLine() {
                 if let dataToInt = Int(data) {
@@ -87,33 +92,25 @@ class Team {
             }
         } while userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 4 && userChoice != 5
         
-        repeat {
-                print("Enter a name for your character :")
-                if let data = readLine() {
-                    characterName = data
-                }
-            controlIfNameIsUnique()
-            } while characterName == ""
-        
         switch userChoice {
         case 1:
-                let fighter = Fighter(name: characterName) // Add a Fighter
+                let fighter = Fighter(name: uniqueCharacterName()) // Add a Fighter
                 characters.append(fighter)
                 print("A Fighter named \(fighter.name) is added !")
         case 2:
-                let magus = Magus(name: characterName) // Add a Magus
+                let magus = Magus(name: uniqueCharacterName()) // Add a Magus
                 characters.append(magus)
                 print("A Magus named \(magus.name) is added !")
         case 3:
-                let colossus = Colossus(name: characterName) // Add a Colossus
+                let colossus = Colossus(name: uniqueCharacterName()) // Add a Colossus
                 characters.append(colossus)
                 print("A Colossus named \(colossus.name) is added !")
         case 4:
-                let dwarf = Dwarf(name: characterName) // Add a Dwarf
+                let dwarf = Dwarf(name: uniqueCharacterName()) // Add a Dwarf
                 characters.append(dwarf)
                 print("A Dwarf named \(dwarf.name) is added !")
         case 5:
-                let thief = Thief(name: characterName) // Add a Thief
+                let thief = Thief(name: uniqueCharacterName()) // Add a Thief
                 characters.append(thief)
                 print("A Thief named \(thief.name) is added !")
         default:
