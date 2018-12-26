@@ -10,20 +10,20 @@ import Foundation
 
 class Team {
     
-    //MARK - Properties
+    //MARK: - Properties
       var characters = [Character]()
       var charactersName = [String]()
       var name = ""
       var teamName = ""
     
     
-    //MARK - Init
+    //MARK: - Init
     init() {
         createTeamName()
         createCharacters()
     }
     
-    //MARK - Methods
+    //MARK: - Methods
     
     
     func createTeamName() {
@@ -35,9 +35,9 @@ class Team {
     }
     
     func showCharactersInTeam() {
-        print("\n 🗡 The team \(teamName) is composed of:")
+        print("\n 🗡 Team \(teamName):")
         for character in characters {
-            character.describeCharacters()
+            character.describeCharacter()
         }
     }
     
