@@ -14,8 +14,8 @@ class Character {
     let characterType: String // Fighter, Magus, Colossus ...
     let name: String
     var lifePoint: Int
+    var maxLifePoint: Int
     var weapon: Weapon
-    
     
     //MARK: - Init
     init(characterType: String, lifePoint: Int, weapon: Weapon, name: String) {
@@ -23,12 +23,14 @@ class Character {
         self.lifePoint = lifePoint
         self.weapon = weapon
         self.name = name
+        self.maxLifePoint = lifePoint
     }
     
     //MARK: - Methods
     
-    func presentCharacters() {
-        print(" ▻ " + characterType + " " + name + ": - Life: \(lifePoint) - " + weapon.weaponsName + " \(weapon.weaponsDamage) pts")
+    // Describe Character
+    func describeCharacter() {
+        print(" ▻ " + characterType + " " + name + ": Life: \(lifePoint) - " + weapon.weaponsName + " \(weapon.weaponsDamage) pts")
     }
 
 }
