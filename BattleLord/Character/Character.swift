@@ -33,4 +33,14 @@ class Character {
         print(" ▻ " + characterType + " " + name + ": Life: \(lifePoint) - " + weapon.weaponsName + " \(weapon.weaponsDamage) pts")
     }
 
+    // Attack the enemy
+    func attack(characterToAttack: Character) {
+        characterToAttack.lifePoint -= weapon.weaponsDamage
+        if characterToAttack.lifePoint <= 0 {
+            characterToAttack.lifePoint = 0
+            print("✖️ \(characterToAttack.name) is dead ✖️")
+        } else {
+            print("\(characterToAttack.name) has now \(characterToAttack.lifePoint) life points")
+        }
+    }
 }
