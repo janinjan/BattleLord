@@ -43,14 +43,14 @@ class Team {
     
     // First Interface
     func menuListOfCharacter() {
-        print("\n ==========================================="
+        print("\n ============================================"
             + "\n Add 3 characters to your Team :"
-            + "\n1. Fighter   - Life: 100  - Damages : 10 pts"
-            + "\n2. Magus     - Life: 60   - Heal    : 30 pts"
-            + "\n3. Colossus  - Life: 130  - Damages :  5 pts"
-            + "\n4. Dwarf     - Life: 40   - Damages : 25 pts"
-            + "\n5. Thief     - Life: 70   - Damages : 15 pts"
-            + "\n ==========================================="
+            + "\n1. Fighter   - Life: 100   - Damages : 10 pts"
+            + "\n2. Magus     - Life:  60   - Heal    : 30 pts"
+            + "\n3. Colossus  - Life: 130   - Damages :  5 pts"
+            + "\n4. Dwarf     - Life:  45   - Damages : 20 pts"
+            + "\n5. Thief     - Life:  70   - Damages : 15 pts"
+            + "\n ============================================"
             + "\n Select a number between 1 and 5 :")
     }
     
@@ -82,7 +82,6 @@ class Team {
     // The player creates a character to add to his Team
     private func createCharacter() {
         var userChoice = 0
-        
         menuListOfCharacter()
         repeat {
             if let data = readLine() {
@@ -116,7 +115,5 @@ class Team {
         default:
                 break
         }
-
-       
-}
+    }
 }

@@ -8,10 +8,11 @@
 
 import Foundation
 
+// The Dwarf's weapon
 class Axe: Weapon {
     
-    //MARK - Init
+    //MARK: - Init
     init() {
-        super.init(weaponsName: "Axe", weaponsDamage: 25)
+        super.init(weaponsName: "Axe", weaponsDamage: 20, weaponsHeal: 0)
     }
 }

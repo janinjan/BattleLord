@@ -12,7 +12,7 @@ class Dwarf: Character {
     
     //MARK: - Init
     init(name: String) {
-        super.init(characterType: "Dwarf", lifePoint: 40, weapon: Axe(), name: name)
+        super.init(characterType: "Dwarf", lifePoint: 45, weapon: Axe(), name: name)
     }
 
 }
