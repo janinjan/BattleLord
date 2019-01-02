@@ -30,7 +30,11 @@ class Character {
     
     // Describe Character
     func describeCharacter() {
-        print(" ▻ " + characterType + " " + name + ": Life: \(lifePoint) - " + weapon.weaponsName + " \(weapon.weaponsDamage) pts")
+        if weapon.weaponsDamage >= 1 {
+            print(" ▻ " + characterType + " " + name + ": Life: \(lifePoint) - " + weapon.weaponsName + " (Damages: \(weapon.weaponsDamage) pts)")
+        } else {
+            print(" ▻ " + characterType + " " + name + ": Life: \(lifePoint) - " + weapon.weaponsName + " (Heal: \(weapon.weaponsHeal) pts)")
+        }
     }
 
     // Attack the enemy
