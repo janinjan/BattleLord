@@ -36,7 +36,7 @@ class Character {
             print(" ▻ " + characterType + " " + name + ": Life: \(lifePoint) - " + weapon.weaponsName + " (Heal: \(weapon.weaponsHeal) pts)")
         }
     }
-
+    
     // Attack the enemy
     func attack(characterToAttack: Character) {
         characterToAttack.lifePoint -= weapon.weaponsDamage
@@ -45,6 +45,14 @@ class Character {
             print("✖️ \(characterToAttack.name) is dead ✖️")
         } else {
             print("\(characterToAttack.name) has now \(characterToAttack.lifePoint) life points")
+        }
+    }
+    
+    // Control life points of character. If it's under 0, set it to 0
+    func checkLifeCharacter() {
+        if self.lifePoint <= 0 {
+            self.lifePoint = 0
+            print("✖️ \(self.name) is dead ✖️")
         }
     }
 }
