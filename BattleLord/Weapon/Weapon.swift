@@ -14,11 +14,25 @@ class Weapon {
     let weaponsName: String
     let weaponsDamage: Int
     let weaponsHeal: Int
+    let weaponsAftermath: Int
     
     //MARK: - Init
-    init(weaponsName: String, weaponsDamage: Int, weaponsHeal: Int) {
+    init(weaponsName: String, weaponsDamage: Int, weaponsHeal: Int, weaponsAftermath: Int) {
         self.weaponsName = weaponsName
         self.weaponsDamage = weaponsDamage
         self.weaponsHeal = weaponsHeal
+        self.weaponsAftermath = weaponsAftermath
+    }
+    
+    // Describe new weapon when chest appears
+    func describeNewWeapon(of character: Character) {
+        switch character {
+        case is Magus:
+            print(" ▻ " + weaponsName + " (Heal: \(weaponsHeal) pts)")
+        case is Colossus:
+            print(" ▻ " + weaponsName + " (Damages: \(weaponsDamage) pts / Aftermath: \(weaponsAftermath) pts)")
+        default:
+            print(" ▻ " + weaponsName + " (Damages: \(weaponsDamage) pts)")
+        }
     }
 }
