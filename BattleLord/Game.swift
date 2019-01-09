@@ -64,13 +64,37 @@ class Game {
         return characterToPlay!
     }
     
+    // A chest appears randomly inside the battleLoop(), the character get a new weapon
+    func randomChest(character: Character) {
+        let randomChest = Int.random(in: 0...5)
+        if randomChest == 3 { // The chest appears in the game if number 3 comes out
+            print("\n You're lucky ! There's a chest for you 📦!")
+            switch character {
+            case is Fighter:
+                character.weapon = SuperSword()
+            case is Magus:
+                character.weapon = PurifiedYggdrasilStick()
+            case is Colossus:
+                character.weapon = TheServantOfTheLord()
+            case is Dwarf:
+                character.weapon = SuperAxe()
+            case is Thief:
+                character.weapon = ShadowDagger()
+            default:
+                break
+            }
+            character.weapon.describeNewWeapon(of: character)
+        }
+    }
+
     // Loop for the Battle
-    private func BattleLoop() {
+    private func battleLoop() {
         print("\n ================[🗡 Battle 🗡]===============")
         repeat {
                 showTeamOne()
                 print("\n Which one of your characters do you choose ? ")
                 let myCharacter = playerSelection() // The first team selects character to play
+                randomChest(character: myCharacter)
                 if let magus = myCharacter as? Magus { // If the chosen Character is Magus, can heal someone from his team
                         print("\n Which character do you want to heal?")
                         showTeamOne()
@@ -132,7 +156,7 @@ class Game {
             team.showCharactersInTeam()
         }
         resumeTeam()
-        BattleLoop()
+        battleLoop()
         print("\n \n END OF THE GAME")
     }
     //================
