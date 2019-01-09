@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D7F0EC921E015A600625F3F /* TeamFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7F0EC821E015A600625F3F /* TeamFactory.swift */; };
 		3DDB400F21C7C6F3004DC25F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB400E21C7C6F3004DC25F /* main.swift */; };
 		3DDB402421C7C8C1004DC25F /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB402321C7C8C1004DC25F /* Character.swift */; };
 		3DDB402621C7C8DE004DC25F /* Fighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB402521C7C8DE004DC25F /* Fighter.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3D7F0EC821E015A600625F3F /* TeamFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamFactory.swift; sourceTree = "<group>"; };
 		3DDB400B21C7C6F3004DC25F /* BattleLord */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BattleLord; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DDB400E21C7C6F3004DC25F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3DDB402321C7C8C1004DC25F /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
@@ -66,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D7F0ECA21E15D3B00625F3F /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				3D7F0EC821E015A600625F3F /* TeamFactory.swift */,
+				3DDB403121C7D3B6004DC25F /* Team.swift */,
+			);
+			path = Team;
+			sourceTree = "<group>";
+		};
 		3DDB400221C7C6F3004DC25F = {
 			isa = PBXGroup;
 			children = (
@@ -87,7 +98,7 @@
 			children = (
 				3DDB402221C7C8A9004DC25F /* Character */,
 				3DDB400E21C7C6F3004DC25F /* main.swift */,
-				3DDB403121C7D3B6004DC25F /* Team.swift */,
+				3D7F0ECA21E15D3B00625F3F /* Team */,
 				3DDB402F21C7C99C004DC25F /* Game.swift */,
 				3DDB403321C7D65E004DC25F /* Weapon */,
 			);
@@ -188,6 +199,7 @@
 				3DDB402E21C7C976004DC25F /* Thief.swift in Sources */,
 				3DDB403F21C8145B004DC25F /* Punch.swift in Sources */,
 				3DDB403921C7D6E0004DC25F /* StickOfLife.swift in Sources */,
+				3D7F0EC921E015A600625F3F /* TeamFactory.swift in Sources */,
 				3DDB402421C7C8C1004DC25F /* Character.swift in Sources */,
 				3DDB402821C7C913004DC25F /* Magus.swift in Sources */,
 				3DDB403021C7C99C004DC25F /* Game.swift in Sources */,
