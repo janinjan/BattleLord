@@ -14,10 +14,14 @@ class TeamFactory {
     private static var charactersName = [String]()
     
     // Check that entered name is unique in the Game
-    static func uniqueCharacterName() -> String {
+    static func uniqueName(isTeamName: Bool) -> String {
         var characterName = ""
         repeat {
-            print("Enter a name for your character :")
+            if isTeamName {
+                print("▻ Enter a Team's name :")
+            } else {
+                print("▻ Enter a name for your character :")
+            }
             if let data = readLine() {
                 characterName = data
                 if charactersName.contains(characterName) {
@@ -42,5 +46,3 @@ class TeamFactory {
         } while userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 4 && userChoice != 5
     }
 }
-
-

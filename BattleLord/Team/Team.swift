@@ -24,13 +24,9 @@ class Team {
     
     //MARK: - Methods
     
-    // The player enters name for his team
+    // The player enters unique name for his team
     func createTeamName() {
-        repeat {
-            if let data = readLine() {
-                teamName = data
-            }
-        } while teamName == ""
+        teamName = TeamFactory.uniqueName(isTeamName: true)
     }
     
     // Show characters in team with their descriptions
@@ -66,7 +62,7 @@ class Team {
         var userChoice = 0
         menuListOfCharacter() // Show list of characters available to compose a team
         TeamFactory.enterNumber(userChoice: &userChoice) // Player enters number to select Character from the list
-        let uniqueName = TeamFactory.uniqueCharacterName() // Add character's name and check if it is unique in game
+        let uniqueName = TeamFactory.uniqueName(isTeamName: false) // Add character's name and check if it is unique in game
         switch userChoice {
         case 1:
             let fighter = Fighter(name: uniqueName)
