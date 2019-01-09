@@ -115,19 +115,15 @@ class Game {
     // Check if all characters on a team are dead
     private func endOfGame() -> Bool {
         let teamIsDead = false
-        for _ in teamsArray {
-                // If all characters on the first team are dead, Game ends, team 2 wins
-            if teamsArray[0].characters[0].lifePoint <= 0
-                && teamsArray[0].characters[1].lifePoint <= 0
-                && teamsArray[0].characters[2].lifePoint <= 0 {
-                print("\n ▻ ⚔️ CONGRATULATIONS TEAM \(teamsArray[1].teamName) WON"
+        for i in 0..<teamsArray.count {
+            let team1 = teamsArray[i]
+            let team2 = teamsArray[i+1]
+            if team1.isDead() {   // If all characters on the first team are dead, Game ends, team 2 wins
+                print("\n ▻ ⚔️ CONGRATULATIONS TEAM \(team2.teamName) WON"
                     + "\n      You're the stronger BattleLords ⚔️")
                 return teamIsDead == true
-                // Else if all characters on the second team are dead, Game ends, team 1 wins
-            } else if teamsArray[1].characters[0].lifePoint <= 0
-                    && teamsArray[1].characters[1].lifePoint <= 0
-                    && teamsArray[1].characters[2].lifePoint <= 0 {
-                print("\n ▻ ⚔️ CONGRATULATIONS TEAM \(teamsArray[0].teamName) WON"
+            } else if team2.isDead() { // Else if all characters on the second team are dead, Game ends, team 1 wins
+                print("\n ▻ ⚔️ CONGRATULATIONS TEAM \(team1.teamName) WON"
                     + "\n      You're the stronger BattleLords ⚔️")
                 return teamIsDead == true
             } else { // Else Game continues

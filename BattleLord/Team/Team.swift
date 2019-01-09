@@ -92,4 +92,17 @@ class Team {
             break
         }
     }
+    
+    // If a Character is dead, function returns true
+    func isDead() -> Bool {
+        var isDead = false
+        for character in characters {
+            if character.lifePoint == 0 {
+                isDead = true
+            } else {
+                return false
+            }
+        }
+        return isDead
+    }
 }
