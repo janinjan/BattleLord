@@ -9,35 +9,59 @@
 import Foundation
 
 class Game {
-    
     //MARK: - Property
-    private var teamsArray = [Team]()
+    private let teamFactory = TeamFactory() // created instance of TeamFactory class
     
     //MARK: - Methods
+    /**
+     * Start the Game
+     */
+    func start() {
+        print("==============[⚔️ BattleLord ⚔️]============="
+            + "\n"
+            + "\n A long time ago, men were fighting for their"
+            + "\n lives."
+            + "\n Some of them choose to make it their destiny,"
+            + "\n they're called BattleLords...")
+        teamFactory.createTeams()
+        resumeTeam()
+        battleLoop()
+        print("\n \n END OF THE GAME")
+    }
     
-    // Showing Team 1 composition
+    /**
+     * Showing Team 1 composition
+     */
     private func showTeamOne() {
-        teamsArray[0].showCharactersInTeam()
+        teamFactory.teamsArray[0].showCharactersInTeam()
     }
     
-    // Showing Team 2 composition
+    /**
+     * Showing Team 2 composition
+     */
     private func showTeamTwo() {
-        teamsArray[1].showCharactersInTeam()
+        teamFactory.teamsArray[1].showCharactersInTeam()
     }
     
-    // Resume Characters in Teams before Battle
+    /**
+     * Resume Characters in Teams before Battle
+     */
     private func resumeTeam() {
         print("\n \n =============[🗡 Resume Team 🗡]============")
         showTeamOne()
         showTeamTwo()
     }
     
-    // Swap Index 0 and 1 of teamsArray
+    /**
+     * Swap Index 0 and 1 of teamsArray
+     */
     private func swapTeams() {
-        teamsArray.swapAt(0, 1)
+        teamFactory.teamsArray.swapAt(0, 1)
     }
     
-    // The player chooses a character for the Battle
+    /**
+     * The player chooses a character for the Battle
+     */
     private func playerSelection() -> Character {
         var characterToPlay: Character?
         while characterToPlay == nil {
@@ -45,11 +69,11 @@ class Game {
                 
                 switch userChoice {
                 case "1":
-                    characterToPlay = teamsArray[0].characters[0]
+                    characterToPlay = teamFactory.teamsArray[0].characters[0]
                 case "2":
-                    characterToPlay = teamsArray[0].characters[1]
+                    characterToPlay = teamFactory.teamsArray[0].characters[1]
                 case "3":
-                    characterToPlay = teamsArray[0].characters[2]
+                    characterToPlay = teamFactory.teamsArray[0].characters[2]
                 default:
                     break
                 }
@@ -64,8 +88,10 @@ class Game {
         return characterToPlay!
     }
     
-    // A chest appears randomly inside the battleLoop(), the character get a new weapon
-    func randomChest(character: Character) {
+    /**
+     * A chest appears randomly inside the battleLoop(), the character get a new weapon
+     */
+    private func randomChest(character: Character) {
         let randomChest = Int.random(in: 0...5)
         if randomChest == 3 { // The chest appears in the game if number 3 comes out
             print("\n You're lucky ! There's a chest for you 📦!")
@@ -86,44 +112,47 @@ class Game {
             character.weapon.describeNewWeapon(of: character)
         }
     }
-
-    // Loop for the Battle
+    
+    /**
+     * Loop for the Battle
+     */
     private func battleLoop() {
         print("\n ================[🗡 Battle 🗡]===============")
         repeat {
+            showTeamOne()
+            print("\n Which one of your characters do you choose ? ")
+            let myCharacter = playerSelection() // The first team selects character to play (enter number 1, 2 or 3)
+            randomChest(character: myCharacter) // If the chest appears when selecting character. He gets a new weapon
+            if let magus = myCharacter as? Magus { // If the chosen Character is Magus, can heal someone from his team
                 showTeamOne()
-                print("\n Which one of your characters do you choose ? ")
-                let myCharacter = playerSelection() // The first team selects character to play
-                randomChest(character: myCharacter)
-                if let magus = myCharacter as? Magus { // If the chosen Character is Magus, can heal someone from his team
-                        print("\n Which character do you want to heal?")
-                        showTeamOne()
-                        let characterToHeal = playerSelection()
-                        magus.heal(characterToHeal: characterToHeal)
-                        swapTeams()
-                } else {  // Else, if the chosen Character is not Magus, attack the enemy
-                        showTeamTwo()
-                        print("\n Choose a character to attack ! ")
-                        swapTeams()
-                        let characterToAttack = playerSelection()
-                        myCharacter.attack(characterToAttack: characterToAttack)
-                        }
-                } while endOfGame() // repeat while there is still a character alive on a team
+                print("\n Which character do you want to heal?")
+                let characterToHeal = playerSelection() // The player chooses character to heal in Magus's team
+                magus.heal(characterToHeal: characterToHeal)
+                swapTeams()
+            } else {  // Else, if the chosen Character is not Magus, attack the enemy
+                showTeamTwo()
+                print("\n Choose a character to attack ! ")
+                swapTeams()
+                let characterToAttack = playerSelection() // The player chooses character for attack on enemy team
+                myCharacter.attack(characterToAttack: characterToAttack)
+            }
+        } while endOfGame() // repeat while there is still a character alive on a team
     }
     
-    
-    // Check if all characters on a team are dead
+    /**
+     * Check if all characters on a team are dead
+     */
     private func endOfGame() -> Bool {
         let teamIsDead = false
-        for i in 0..<teamsArray.count {
-            let team1 = teamsArray[i]
-            let team2 = teamsArray[i+1]
+        for i in 0..<teamFactory.teamsArray.count {
+            let team1 = teamFactory.teamsArray[i]
+            let team2 = teamFactory.teamsArray[i+1]
             if team1.isDead() {   // If all characters on the first team are dead, Game ends, team 2 wins
-                print("\n ▻ ⚔️ CONGRATULATIONS TEAM \(team2.teamName) WON"
+                print("\n ▻ ⚔️ CONGRATULATIONS TEAM \(team2.name) WON"
                     + "\n      You're the stronger BattleLords ⚔️")
                 return teamIsDead == true
             } else if team2.isDead() { // Else if all characters on the second team are dead, Game ends, team 1 wins
-                print("\n ▻ ⚔️ CONGRATULATIONS TEAM \(team1.teamName) WON"
+                print("\n ▻ ⚔️ CONGRATULATIONS TEAM \(team1.name) WON"
                     + "\n      You're the stronger BattleLords ⚔️")
                 return teamIsDead == true
             } else { // Else Game continues
@@ -132,30 +161,4 @@ class Game {
         }
         return teamIsDead
     }
-    
-    
-    //=======================
-    //MARK: - Start the Game
-    //=======================
-    func start() {
-        print("==============[⚔️ BattleLord ⚔️]============="
-            + "\n"
-            + "\n A long time ago, men were fighting for their"
-            + "\n lives."
-            + "\n Some of them choose to make it their destiny,"
-            + "\n they're called BattleLords...")
-        for n in 0..<2 {
-            print("\n ============================================"
-                + "\n Player \(n + 1), enter a Team's name :")
-            let team = Team()
-            teamsArray.append(team)
-            team.showCharactersInTeam()
-        }
-        resumeTeam()
-        battleLoop()
-        print("\n \n END OF THE GAME")
-    }
-    //================
-    //End of the Game
-    //================
 }
