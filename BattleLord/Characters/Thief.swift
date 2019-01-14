@@ -8,11 +8,12 @@
 
 import Foundation
 
+/**
+ * Thief class inherits from the Character class. It defines a thief
+ */
 class Thief: Character {
-    
     //MARK: - Init
     init(name: String) {
         super.init(characterType: "Thief", lifePoint: 70, weapon: DaggerInEachHand(), name: name)
     }
-
 }

@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ * This class defines all weapons' characteristics
+ */
 class Weapon {
     //MARK: - Properties
     let weaponsName: String

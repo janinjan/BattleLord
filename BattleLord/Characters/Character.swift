@@ -8,8 +8,10 @@
 
 import Foundation
 
+/**
+ * This class defines all characters' characteristics
+ */
 class Character {
-    
     //MARK: - Properties
     let characterType: String // Fighter, Magus, Colossus ...
     let name: String
@@ -27,8 +29,9 @@ class Character {
     }
     
     //MARK: - Methods
-    
-    // Describe Character
+    /**
+     * Describe Character
+     */
     func describeCharacter() {
         if weapon.weaponsDamage >= 1 {
             print(" ▻ " + characterType + " " + name + ": Life: \(lifePoint) - " + weapon.weaponsName + " (Damages: \(weapon.weaponsDamage) pts)")
@@ -37,7 +40,9 @@ class Character {
         }
     }
     
-    // Attack the enemy
+    /**
+     * Attack the enemy
+     */
     func attack(characterToAttack: Character) {
         characterToAttack.lifePoint -= weapon.weaponsDamage
         if characterToAttack.lifePoint <= 0 {
@@ -48,7 +53,9 @@ class Character {
         }
     }
     
-    // Control life points of character. If it's under 0, set it to 0
+    /**
+     * Control life points of character. If it's under 0, set it to 0
+     */
     func checkLifeCharacter() {
         if self.lifePoint <= 0 {
             self.lifePoint = 0

@@ -8,11 +8,12 @@
 
 import Foundation
 
+/**
+ * Dwarf class inherits from the Character class. It defines a dwarf
+ */
 class Dwarf: Character {
-    
     //MARK: - Init
     init(name: String) {
         super.init(characterType: "Dwarf", lifePoint: 45, weapon: Axe(), name: name)
     }
-
 }
