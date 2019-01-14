@@ -17,16 +17,23 @@ class Game {
      * Start the Game
      */
     func start() {
+        gameIntroduction()
+        teamFactory.createTeams()
+        resumeTeams()
+        battleLoop()
+        print("\n \n END OF THE GAME")
+    }
+    
+    /**
+     * Introduction text of BattleLord game
+     */
+    private func gameIntroduction() {
         print("==============[⚔️ BattleLord ⚔️]============="
             + "\n"
             + "\n A long time ago, men were fighting for their"
             + "\n lives."
             + "\n Some of them choose to make it their destiny,"
             + "\n they're called BattleLords...")
-        teamFactory.createTeams()
-        resumeTeam()
-        battleLoop()
-        print("\n \n END OF THE GAME")
     }
     
     /**
@@ -46,7 +53,7 @@ class Game {
     /**
      * Resume Characters in Teams before Battle
      */
-    private func resumeTeam() {
+    private func resumeTeams() {
         print("\n \n =============[🗡 Resume Team 🗡]============")
         showTeamOne()
         showTeamTwo()
@@ -148,17 +155,23 @@ class Game {
             let team1 = teamFactory.teamsArray[i]
             let team2 = teamFactory.teamsArray[i+1]
             if team1.isDead() {   // If all characters on the first team are dead, Game ends, team 2 wins
-                print("\n ▻ ⚔️ CONGRATULATIONS TEAM \(team2.name) WON"
-                    + "\n      You're the stronger BattleLords ⚔️")
+                winMessage(teamName: team2.name)
                 return teamIsDead == true
             } else if team2.isDead() { // Else if all characters on the second team are dead, Game ends, team 1 wins
-                print("\n ▻ ⚔️ CONGRATULATIONS TEAM \(team1.name) WON"
-                    + "\n      You're the stronger BattleLords ⚔️")
+                winMessage(teamName: team1.name)
                 return teamIsDead == true
             } else { // Else Game continues
                 return teamIsDead == false
             }
         }
         return teamIsDead
+    }
+    
+    /**
+     * Message for winners team when battle ends
+     */
+    private func winMessage(teamName: String) {
+        print("\n ▻ ⚔️ CONGRATULATIONS TEAM \(teamName) WON"
+            + "\n      You're the stronger BattleLords ⚔️")
     }
 }
