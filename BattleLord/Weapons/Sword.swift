@@ -8,18 +8,20 @@
 
 import Foundation
 
-// The Fighter's weapon
+/**
+ * The Fighter's weapon
+ */
 class Sword: Weapon {
-    
     //MARK: - Init
     init() {
         super.init(weaponsName: "Sword", weaponsDamage: 10, weaponsHeal: 0, weaponsAftermath: 0)
     }
 }
 
-// The Fighter's special weapon which can appear in random chest
+/**
+ * The Fighter's special weapon which can appear in random chest
+ */
 class SuperSword: Weapon {
-    
     //MARK: - Init
     init() {
         super.init(weaponsName: "Super Sword ⚔︎", weaponsDamage: 20, weaponsHeal: 0, weaponsAftermath: 0)

@@ -8,16 +8,19 @@
 
 import Foundation
 
-// The Colossus's weapon
+/**
+ * The Colossus' weapon
+ */
 class Punch: Weapon {
-    
     //MARK: - Init
     init() {
         super.init(weaponsName: "Punch", weaponsDamage: 5, weaponsHeal: 0, weaponsAftermath: 0)
     }
 }
 
-// The Colossus's special weapon which can appear in random chest
+/**
+ * The Colossus' special weapon which can appear in random chest
+ */
 class TheServantOfTheLord: Weapon {
     // Everytime the Colossus uses this weapon, he looses 80 lifes points due to aftermath. His enemy looses 40 life points.
     init() {

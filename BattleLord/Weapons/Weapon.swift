@@ -9,7 +9,6 @@
 import Foundation
 
 class Weapon {
-    
     //MARK: - Properties
     let weaponsName: String
     let weaponsDamage: Int
@@ -21,10 +20,13 @@ class Weapon {
         self.weaponsName = weaponsName
         self.weaponsDamage = weaponsDamage
         self.weaponsHeal = weaponsHeal
-        self.weaponsAftermath = weaponsAftermath
+        self.weaponsAftermath = weaponsAftermath // Character which uses weapon with positive weaponsAftermath property, looses life points on self due to aftermath
     }
     
-    // Describe new weapon when chest appears
+    //MARK: - Method
+    /**
+     * Describe new weapon when chest appears
+     */
     func describeNewWeapon(of character: Character) {
         switch character {
         case is Magus:

@@ -8,18 +8,20 @@
 
 import Foundation
 
-// The Thief's weapon
+/**
+ * The Thief's weapon
+ */
 class DaggerInEachHand: Weapon {
-    
     //MARK: - Init
     init() {
         super.init(weaponsName: "Dagger in each Hand", weaponsDamage: 15, weaponsHeal: 0, weaponsAftermath: 0)
     }
 }
 
-// The Thief's special weapon which can appear in random chest
+/**
+ * The Thief's special weapon which can appear in random chest
+ */
 class ShadowDagger: Weapon {
-    
     //MARK: - Init
     init() {
         super.init(weaponsName: "Shadow Dagger ⚔︎", weaponsDamage: 25, weaponsHeal: 0, weaponsAftermath: 0)
