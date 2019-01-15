@@ -18,20 +18,34 @@ class Colossus: Character {
     }
     
     /**
-     * Override attack method for Colossus
+     * Override attack method for Colossus. By using TheServantOfTheLord weapon, Colossus looses life points due to aftermath.
      */
     override func attack(characterToAttack: Character) {
         switch weapon {
         case is Punch:
-            super.attack(characterToAttack: characterToAttack) // Attack method from parent class
-            characterToAttack.checkLifeCharacter() // if character's life under 0 set it to 0 with dead message
-        case is TheServantOfTheLord: // Override attack method
+            super.attack(characterToAttack: characterToAttack)
+        case is TheServantOfTheLord:
             characterToAttack.lifePoint -= weapon.weaponsDamage
-            print("Your enemy \(characterToAttack.name) has lost \(weapon.weaponsDamage) life points")
-            lifePoint -= weapon.weaponsAftermath // by using this weapon, Colossus looses life points due to aftermath
-            print("Using \(weapon.weaponsName) decreases \(weapon.weaponsAftermath) life points on self due to aftermath")
+            print("\(weapon.weaponsName) inflicts \(weapon.weaponsDamage) damages points to your enemy:")
             characterToAttack.checkLifeCharacter()
+            lifePoint -= weapon.weaponsAftermath
+            print("\n"
+                + "You have lost \(weapon.weaponsAftermath) life points due to weapon's aftermath:")
             checkLifeCharacter()
+        default:
+            break
+        }
+    }
+    
+    /**
+     * Describe Colossus according to his weapon
+     */
+    override func describeCharacter() {
+        switch weapon {
+        case is Punch:
+            super.describeCharacter()
+        case is TheServantOfTheLord:
+            print(" ▻ " + characterType + " " + name + ": Life: \(lifePoint) - " + weapon.weaponsName + " (Damages: \(weapon.weaponsDamage) pts / Aftermath: \(weapon.weaponsAftermath) pts)")
         default:
             break
         }

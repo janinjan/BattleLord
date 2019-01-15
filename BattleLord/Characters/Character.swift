@@ -16,7 +16,7 @@ class Character {
     let characterType: String // Fighter, Magus, Colossus ...
     let name: String
     var lifePoint: Int
-    var maxLifePoint: Int
+    let maxLifePoint: Int
     var weapon: Weapon
     
     //MARK: - Init
@@ -33,11 +33,7 @@ class Character {
      * Describe Character
      */
     func describeCharacter() {
-        if weapon.weaponsDamage >= 1 {
-            print(" ▻ " + characterType + " " + name + ": Life: \(lifePoint) - " + weapon.weaponsName + " (Damages: \(weapon.weaponsDamage) pts)")
-        } else {
-            print(" ▻ " + characterType + " " + name + ": Life: \(lifePoint) - " + weapon.weaponsName + " (Heal: \(weapon.weaponsHeal) pts)")
-        }
+        print(" ▻ " + characterType + " " + name + ": Life: \(lifePoint) - " + weapon.weaponsName + " (Damages: \(weapon.weaponsDamage) pts)")
     }
     
     /**
@@ -45,12 +41,7 @@ class Character {
      */
     func attack(characterToAttack: Character) {
         characterToAttack.lifePoint -= weapon.weaponsDamage
-        if characterToAttack.lifePoint <= 0 {
-            characterToAttack.lifePoint = 0
-            print("✖️ \(characterToAttack.name) is dead ✖️")
-        } else {
-            print("\(characterToAttack.name) has now \(characterToAttack.lifePoint) life points")
-        }
+        characterToAttack.checkLifeCharacter()
     }
     
     /**
@@ -59,7 +50,9 @@ class Character {
     func checkLifeCharacter() {
         if self.lifePoint <= 0 {
             self.lifePoint = 0
-            print("✖️ \(self.name) is dead ✖️")
+            print(" ✖️ \(characterType) \(self.name) is dead ✖️")
+        } else {
+            print(" 💢 \(name) has now \(lifePoint) life points")
         }
     }
 }

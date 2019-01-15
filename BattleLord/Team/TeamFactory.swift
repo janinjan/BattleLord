@@ -81,7 +81,7 @@ class TeamFactory {
         print("\n ============================================"
             + "\n Add 3 characters to your Team :"
             + "\n1. Fighter   - Life: 100   - Damages : 10 pts"
-            + "\n2. Magus     - Life:  60   - Heal    : 30 pts"
+            + "\n2. Magus     - Life:  60   - Heal    : 10 pts"
             + "\n3. Colossus  - Life: 130   - Damages :  5 pts"
             + "\n4. Dwarf     - Life:  45   - Damages : 20 pts"
             + "\n5. Thief     - Life:  70   - Damages : 15 pts"

@@ -26,6 +26,13 @@ class Magus: Character {
         if characterToHeal.lifePoint >= characterToHeal.maxLifePoint {
             characterToHeal.lifePoint = characterToHeal.maxLifePoint
         }
-        print("\(characterToHeal.name) has now \(characterToHeal.lifePoint) life points")
+        print(" 🧙🏼‍♂️ \(characterType) \(characterToHeal.name) has been healed and has now \(characterToHeal.lifePoint) life points")
+    }
+    
+    /**
+     * Describe Magus Character
+     */
+    override func describeCharacter() {
+        print(" ▻ " + characterType + " " + name + ": Life: \(lifePoint) - " + weapon.weaponsName + " (Heal: \(weapon.weaponsHeal) pts)")
     }
 }
