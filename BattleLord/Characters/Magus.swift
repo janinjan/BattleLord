@@ -35,4 +35,11 @@ class Magus: Character {
     override func describeCharacter() {
         print(" ▻ " + characterType + " " + name + ": Life: \(lifePoint) - " + weapon.weaponsName + " (Heal: \(weapon.weaponsHeal) pts)")
     }
+    
+    /**
+     * Magus can't attack, only heal
+     */
+    override func attack(characterToAttack: Character) {
+        print("you can't attack a character")
+    }
 }

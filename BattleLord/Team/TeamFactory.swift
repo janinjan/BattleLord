@@ -107,30 +107,33 @@ class TeamFactory {
      */
     private func createCharacter() -> Character? {
         var userChoice = 0
-        var character: Character!
         menuListOfCharacter() // Show list of characters available to compose a team
         enterNumber(userChoice: &userChoice) // Player enters number to select Character from the list
         let uniqueName = self.uniqueName(isTeamName: false) // Add character's name and check if it is unique in game
         switch userChoice {
         case 1:
-            character = Fighter(name: uniqueName)
-            print("A Fighter named \(character.name) is added !")
+            let fighter = Fighter(name: uniqueName)
+            print("A Fighter named \(fighter.name) is added !")
+            return Fighter(name: uniqueName)
         case 2:
-            character = Magus(name: uniqueName)
-            print("A Magus named \(character.name) is added !")
+            let magus = Magus(name: uniqueName)
+            print("A Magus named \(magus.name) is added !")
+            return Magus(name: uniqueName)
         case 3:
-            character = Colossus(name: uniqueName)
-            print("A Colossus named \(character.name) is added !")
+            let colossus = Colossus(name: uniqueName)
+            print("A Colossus named \(colossus.name) is added !")
+            return Colossus(name: uniqueName)
         case 4:
-            character = Dwarf(name: uniqueName)
-            print("A Dwarf named \(character.name) is added !")
+            let dwarf = Dwarf(name: uniqueName)
+            print("A Dwarf named \(dwarf.name) is added !")
+            return Dwarf(name: uniqueName)
         case 5:
-            character = Thief(name: uniqueName)
-            print("A Thief named \(character.name) is added !")
+            let thief = Thief(name: uniqueName)
+            print("A Thief named \(thief.name) is added !")
+            return Thief(name: uniqueName)
         default:
-            break
+            return nil
         }
-        return character
     }
     
     /**
