@@ -96,9 +96,9 @@ class Game {
     }
     
     /**
-     * A chest appears randomly inside the battleLoop(), the character get a new weapon
+     * A chest appears randomly inside the battleLoop(), Character gets a new weapon
      */
-    private func randomChest(character: Character) {
+    private func randomChest(for character: Character) {
         let randomChest = Int.random(in: 0...5)
         if randomChest == 3 { // The chest appears in the game if number 3 comes out
             print("\n You're lucky ! There's a chest for you 📦!")
@@ -121,6 +121,41 @@ class Game {
     }
     
     /**
+     * Character can't get the special chest weapon twice
+     */
+    private func chestAppearsTwice(to myCharacter: Character) -> Bool {
+        switch myCharacter.weapon {
+        case is SuperSword, is PurifiedYggdrasilStick, is TheServantOfTheLord, is SuperAxe, is ShadowDagger:
+            changeWeapon(of: myCharacter)
+            return true
+        default:
+            return false
+        }
+    }
+    
+    /**
+     * If chest appears a second time for the same character, he recovers his basic weapon
+     */
+    private func changeWeapon(of character: Character) {
+        print("\n ⚔️ A BattleLord doesn't need special weapon. Back to basic ▼")
+        switch character {
+        case is Fighter:
+            character.weapon = Sword()
+        case is Magus:
+            character.weapon = StickOfLife()
+        case is Colossus:
+            character.weapon = Punch()
+        case is Dwarf:
+            character.weapon = Axe()
+        case is Thief:
+            character.weapon = DaggerInEachHand()
+        default:
+            break
+        }
+        character.weapon.describeNewWeapon(of: character)
+    }
+    
+    /**
      * Loop for the Battle
      */
     private func battleLoop() {
@@ -129,7 +164,9 @@ class Game {
             showTeamOne()
             print("\n Which one of your characters do you choose ? ")
             let myCharacter = playerSelection() // The first team selects character to play (enter number 1, 2 or 3)
-            randomChest(character: myCharacter) // If the chest appears when selecting character. He gets a new weapon
+            if chestAppearsTwice(to: myCharacter) == false {
+                randomChest(for: myCharacter) // If the chest appears when selecting character. He gets a new weapon
+            }
             if let magus = myCharacter as? Magus { // If the chosen Character is Magus, can heal someone from his team
                 showTeamOne()
                 print("\n Which character do you want to heal?")
